@@ -1,7 +1,7 @@
 {
 	"id": "statblock-sidekick",
 	"name": "Statblock Sidekick",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"minAppVersion": "1.15.3",
 	"description": "Expand D&D statblocks in Obsidian.",
 	"author": "n21rl",
