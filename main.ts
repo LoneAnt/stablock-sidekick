@@ -16,7 +16,7 @@ export default class StatblockSidekick extends Plugin {
         // create sidekick command
         this.addCommand({
             id: 'create-sidekick',
-            name: 'Create Sidekick',
+            name: 'Create sidekick',
             checkCallback: (checking: boolean) => {
                 const markdownView = this.app.workspace.getActiveViewOfType(MarkdownView);
                 if (markdownView) {
