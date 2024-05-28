@@ -81,50 +81,46 @@ export class OptionSelectModal extends SuggestModal<Option> {
 }
 
 export class NameInputModal extends Modal {
-    private resolve: (value: string) => void;  // Declare the resolve function type
+    private resolve: (value: string) => void;
 
     constructor(app: App, resolve: (value: string) => void) {
         super(app);
-        this.resolve = resolve;  // Save the resolve function of the Promise
+        this.resolve = resolve;
     }
 
     onOpen() {
-        const {contentEl} = this;
-        contentEl.createEl('h1', {text: "Enter the sidekick's name"});
+        const { contentEl } = this;
+        contentEl.createEl('h4', { text: "Enter the sidekick's name" });
 
         // Create a div as a Flex container
-        const formContainer = contentEl.createEl('div');
-        formContainer.style.display = 'flex';
-        formContainer.style.justifyContent = 'space-between';
-        formContainer.style.alignItems = 'center';
-        formContainer.style.width = '100%';
+        const formContainer = contentEl.createEl('div', { cls: 'form-container' });
 
         const nameInput = formContainer.createEl('input', {
             type: 'text',
-            placeholder: 'Enter name...'
+            placeholder: 'Enter name...',
+            cls: 'form-input'
         });
-        nameInput.style.flexGrow = '1';  // Allow the input to expand to fill space
-        nameInput.style.marginRight = '15px';  // Add margin between input and button
 
-        const submitButton = formContainer.createEl('button', {text: 'Save'});
-        submitButton.style.width = 'auto';  // Auto-width based on content inside
+        const submitButton = formContainer.createEl('button', {
+            text: 'Save',
+            cls: 'form-button'
+        });
 
         submitButton.addEventListener('click', () => {
-            this.resolve(nameInput.value);  // Resolve the promise with the input value
-            this.close();  // Close the modal
+            this.resolve(nameInput.value);
+            this.close();
         });
-    
-        // Listen for the Enter key press
+
         nameInput.addEventListener('keydown', (event) => {
             if (event.key === 'Enter') {
-                this.resolve(nameInput.value);  // Resolve the promise with the input value
-                this.close();  // Close the modal
+                this.resolve(nameInput.value);
+                this.close();
             }
         });
     }
 
     onClose() {
-        const {contentEl} = this;
+        const { contentEl } = this;
         contentEl.empty();
     }
 }

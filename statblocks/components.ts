@@ -166,13 +166,13 @@ export class Attack {
     const toHitMatch = this.desc.match(/([+-]?\d+)\s*to\s*hit/i);
     const reachMatch = this.desc.match(/reach\s*(\d+)\s*ft\./i);
     const rangeMatch = this.desc.match(/range\s*(\d+)\/(\d+)\s*ft\./i);
-    const targetMatch = this.desc.match(/(?<=one\s)(\d+|target)/i);
+    const targetMatch = this.desc.match(/one\s(\d+|target)/i);
 
     // Separate match variables for each damage item
     const hitKeywordMatch = this.desc.match(/Hit:/i);
     const averageDamageMatch = this.desc.match(/\d+(?=\s*\()/);
     const numDiceMatch = this.desc.match(/\d+(?=d)/);
-    const diceTypeMatch = this.desc.match(/(?<=d)\d+/);
+    const diceTypeMatch = this.desc.match(/d(\d+)/);
     const damageModMatch = this.desc.match(/[+-]\s*\d+(?=\))/);
     const damageTypeMatch = this.desc.match(/\w+(?=\s+damage)/i);
 
@@ -213,7 +213,7 @@ export class Attack {
       }
 
       if (diceTypeMatch) {
-        this.diceType = parseInt(diceTypeMatch[0], 10);
+        this.diceType = parseInt(diceTypeMatch[1], 10);
       }
 
       if (damageModMatch) {

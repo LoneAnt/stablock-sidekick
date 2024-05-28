@@ -257,7 +257,13 @@ export class Sidekick {
         const validCategories = ["traits", "actions", "bonus_actions", "legendary_actions", "mythic_actions", "reactions"] as const;
         type ValidCategoryKeys = typeof validCategories[number];
     
-        const category = (feature.category && validCategories.includes(feature.category as any)) ? feature.category as ValidCategoryKeys : "traits";
+        // Type guard to check if a category is valid
+        function isValidCategory(category: any): category is ValidCategoryKeys {
+            return validCategories.includes(category);
+        }
+    
+        // Use the type guard function
+        const category = (feature.category && isValidCategory(feature.category)) ? feature.category : "traits";
     
         if (!this.statblock[category]) {
             this.statblock[category] = [];
