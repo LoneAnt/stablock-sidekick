@@ -163,7 +163,7 @@ export async function saveStatblockToFile(plugin: StatblockSidekick, content: st
             await plugin.app.vault.createFolder(folderPath);
         }
 
-        let fileName = `${name}.md`;
+        let fileName = `${name}`;
         const filePath = `${folderPath}/${fileName}`;
 
         // Check if the file already exists
@@ -202,7 +202,7 @@ export async function saveStatblockToFile(plugin: StatblockSidekick, content: st
 
         // Create new file with the updated content
         await plugin.app.vault.create(filePath, content);
-        new Notice(`Sidekick saved as ${fileName}`);
+        // new Notice(`Sidekick saved as ${fileName}`);
         plugin.app.workspace.openLinkText(fileName, filePath, true, { active: true });
 
     } catch (error) {
