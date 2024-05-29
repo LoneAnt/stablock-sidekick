@@ -26,7 +26,7 @@ export class ClassSelectModal extends SuggestModal<SidekickClass> {
 
     constructor(app: App, private onClassChosen: (chosenClass: SidekickClass) => void) {
         super(app);
-        this.setPlaceholder("Select a class");
+        this.setPlaceholder("Select class");
 
         // Instantiate each class
         this.classes = [
@@ -90,7 +90,7 @@ export class NameInputModal extends Modal {
 
     onOpen() {
         const { contentEl } = this;
-        contentEl.createEl('h4', { text: "Enter the sidekick's name" });
+        contentEl.createEl('h4', { text: "Enter a name for the sidekick" });
 
         // Create a div as a Flex container
         const formContainer = contentEl.createEl('div', { cls: 'form-container' });
@@ -126,13 +126,13 @@ export class NameInputModal extends Modal {
 }
 
 // not fully implemented yet
-export class DirectorySelectModal extends FuzzySuggestModal<string> {
+export class FolderSelectModal extends FuzzySuggestModal<string> {
   private resolve: (value: string | undefined) => void;
 
   constructor(app: App, resolve: (value: string | undefined) => void) {
     super(app);
     this.resolve = resolve;
-    this.setPlaceholder('Enter or select a directory...');
+    this.setPlaceholder('Enter or select a folder...');
     this.setInstructions([
       { command: '/', purpose: 'navigate to a folder' },
       { command: '<folder-name>', purpose: 'select a folder' },

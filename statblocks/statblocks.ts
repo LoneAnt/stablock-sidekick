@@ -1,6 +1,5 @@
-import * as yaml from 'yaml';
-import { Plugin, Notice } from 'obsidian';
-import { showNameInputModal, showDirectorySelectModal } from 'modals/show';
+import { Notice, normalizePath, parseYaml, stringifyYaml } from 'obsidian';
+import { showNameInputModal, showFolderSelectModal } from 'modals/show';
 import StatblockSidekick from '../main';
 
 export type Ability = "strength" | "dexterity" | "constitution" | "intelligence" | "wisdom" | "charisma";
@@ -116,7 +115,8 @@ export function extractStatblock(noteContent: string): Statblock | null {
     const match = noteContent.match(regex);
     if (match && match[1]) {
         try {
-            const data = yaml.parse(match[1]);
+            const data = parseYaml(match[1]);
+
             return new Statblock(data)
         } catch (e) {
             console.error("Failed to parse YAML:", e);
@@ -130,7 +130,7 @@ export function extractStatblock(noteContent: string): Statblock | null {
 
 // Function to format a Statblock as markdown text
 export function formatStatblockAsText(statblock: Statblock): string {
-    const yamlContent = yaml.stringify(statblock);
+    const yamlContent = stringifyYaml(statblock);
     return `\n\`\`\`statblock\n${yamlContent}\n\`\`\``;
 }
 
@@ -138,18 +138,18 @@ export async function saveStatblockToFile(plugin: StatblockSidekick, content: st
     const { settings } = plugin;
     let folderPath: string;
     switch (settings.saveMode) {
-        case 'sameDirectory':
+        case 'sameFolder':
         folderPath = this.app.workspace.getActiveFile().parent.path;
         break;
-        case 'defaultDirectory':
-        folderPath = settings.saveDirectory;
+        case 'defaultFolder':
+        folderPath = normalizePath(settings.saveFolder);
         break;
-        case 'promptDirectory':         // not fully implemented yet
-        const directory = await showDirectorySelectModal(plugin.app);
-        if (!directory) {
+        case 'promptFolder':         // not fully implemented yet
+        const Folder = await showFolderSelectModal(plugin.app);
+        if (!Folder) {
             return;
         }
-        folderPath = directory;
+        folderPath = Folder;
         break;
         default:
         new Notice('Invalid save mode setting.');

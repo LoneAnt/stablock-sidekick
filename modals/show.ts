@@ -1,5 +1,5 @@
 import { App } from 'obsidian';
-import { LevelSelectModal, ClassSelectModal, OptionSelectModal, NameInputModal, DirectorySelectModal } from './modals';
+import { LevelSelectModal, ClassSelectModal, OptionSelectModal, NameInputModal, FolderSelectModal } from './modals';
 import { SidekickClass } from 'sidekicks/classes';
 import {Feature, Option} from '../statblocks/statblocks'
 
@@ -32,9 +32,9 @@ export function showNameInputModal(app: App) {
 }
 
 // not fully implemented yet
-export function showDirectorySelectModal(app: App): Promise<string | undefined> {
+export function showFolderSelectModal(app: App): Promise<string | undefined> {
     return new Promise((resolve) => {
-      const modal = new DirectorySelectModal(app, resolve);
+      const modal = new FolderSelectModal(app, resolve);
       modal.open();
     });
   }

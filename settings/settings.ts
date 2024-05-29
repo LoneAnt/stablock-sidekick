@@ -2,13 +2,13 @@ import { App, PluginSettingTab, Setting, TFolder } from 'obsidian';
 import StatblockSidekick from 'main';
 
 export interface StatblockSidekickSettings {
-  saveDirectory: string;
-  saveMode: 'sameDirectory' | 'defaultDirectory' | 'promptDirectory';
+  saveFolder: string;
+  saveMode: 'sameFolder' | 'defaultFolder' | 'promptFolder';
 }
 
 export const DEFAULT_SETTINGS: StatblockSidekickSettings = {
-  saveDirectory: '/sidekicks',
-  saveMode: 'defaultDirectory', // Set the default save mode
+  saveFolder: '/sidekicks',
+  saveMode: 'defaultFolder', // Set the default save mode
 };
 
 export class StatblockSidekickSettingsTab extends PluginSettingTab {
@@ -24,32 +24,30 @@ export class StatblockSidekickSettingsTab extends PluginSettingTab {
 
     containerEl.empty();
 
-    containerEl.createEl('h2', { text: 'Statblock Sidekick Settings' });
-
     new Setting(containerEl)
-      .setName('Save Mode')
-      .setDesc('Choose how to save the sidekick files.')
+      .setName("Save mode")
+      .setDesc("Choose how to save the sidekick files")
       .addDropdown((dropdown) =>
         dropdown
-          .addOption('sameDirectory', 'Same as original file')
-          .addOption('defaultDirectory', 'Default directory')
-          // .addOption('promptDirectory', 'Prompt for directory')
+          .addOption('sameFolder', 'Same as original file')
+          .addOption('defaultFolder', 'Default folder')
+          // .addOption('promptFolder', 'Prompt for Folder')
           .setValue(this.plugin.settings.saveMode)
-          // .onChange(async (value: 'sameDirectory' | 'defaultDirectory' | 'promptDirectory') => {
-          .onChange(async (value: 'sameDirectory' | 'defaultDirectory') => {
+          // .onChange(async (value: 'sameFolder' | 'defaultFolder' | 'promptFolder') => {
+          .onChange(async (value: 'sameFolder' | 'defaultFolder') => {
             this.plugin.settings.saveMode = value;
             await this.plugin.saveSettings();
           })
       );
 
       new Setting(containerEl)
-      .setName('Default Directory')
-      .setDesc("Select the directory where sidekick files should be saved when 'Save Mode' is set to 'Default Directory'")
+      .setName("Default folder")
+      .setDesc("Select the folder where sidekick files should be saved when 'Save mode' is set to 'Default folder'")
       .addText((textComponent) => {
           textComponent.inputEl.placeholder = 'Enter folder path...';
-          textComponent.setValue(this.plugin.settings.saveDirectory);
+          textComponent.setValue(this.plugin.settings.saveFolder);
           textComponent.onChange(async (value) => {
-              this.plugin.settings.saveDirectory = value;
+              this.plugin.settings.saveFolder = value;
               await this.plugin.saveSettings();
           });
       });
