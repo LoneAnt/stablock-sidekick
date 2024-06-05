@@ -4,17 +4,13 @@ This [Obsidian](https://obsidian.md/) plugin is designed as a sidekick for your 
 Presently, the plugin allows you to create custom D&D 5e sidekicks based on the rules from *Tasha's Cauldron of Everything*: Expert, Spellcaster, or Warrior. It provides an interactive experience for selecting the sidekick's class, level, and features.
 
 ## Installation
-It's not currently possible to install the Statblock sidekick like a standard community plugin from within Obsidian. There are two installation methods: through BRAT or manually.
-## BRAT
-1. Install and enable [BRAT](https://github.com/TfTHacker/obsidian42-brat). The simplest method is to use this [link](obsidian://show-plugin?id=obsidian42-brat).
-2. Open the Command Palette or click on the BRAT icon in the Obsidian ribbon.
-3. Select "Add a beta plugin for testing".
-4. When the modal opens, paste the link to this repo in the designated field (). 
-5. Make sure "Enable after installing the plugin" is ticked and click "Add Plugin".
-## Manual installation (updating will require repeating this process)
-1. Download the main.js and manifest.json files from the [latest release](https://github.com/n21rl/stablock-sidekick/releases/latest).
-2. Place the downloaded files within a `sideblock-sidekick` folder in your Obsidian plugin folder (it should be `\.obsidian\plugins` within your vault).
-3. Enable the plugin within Obsidian.
+The easiest way to install this plugin is within Obsidian:
+1. Open **Settings** and navigate to **Community plugins**.
+2. Click **Browse** and search for "Statblock Sidekick".
+3. Install and Enable the plugin.
+
+The plugin can also be installed through [BRAT](https://github.com/TfTHacker/obsidian42-brat) or manually by placing 
+downloaded files from the desired [release](https://github.com/n21rl/stablock-sidekick/releases/) within a your Obsidian plugin folder.
 
 ## Settings
 ### Save Mode
