@@ -1,6 +1,6 @@
 {
 	"name": "statblock-sidekick",
-	"version": "1.0.1",
+	"version": "1.0.3",
 	"description": "Expand D&D 5e statblocks in Obsidian.",
 	"main": "main.js",
 	"scripts": {
